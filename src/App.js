@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   return (
     <>
-      <h1>deploy1 on netlify</h1>
+      <h1>deploy2 on netlify</h1>
     </>
   );
 }
