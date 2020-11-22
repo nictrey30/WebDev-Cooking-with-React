@@ -1,6 +1,7 @@
 import React from 'react';
 import RecipeList from './components/RecipeList';
 // import { v1 as uuidv1 } from 'uuid';
+import './css/App.css';
 
 function App() {
   return (
