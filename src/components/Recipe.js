@@ -1,4 +1,5 @@
 import React from 'react';
+import IngredientList from './IngredientList';
 
 export default function Recipe({ recipe }) {
   return (
@@ -21,6 +22,12 @@ export default function Recipe({ recipe }) {
       <div>
         <span>Instructions:</span>
         <div>{recipe.instructions}</div>
+      </div>
+      <div>
+        <span>Ingredients:</span>
+        <div>
+          <IngredientList ingredients={recipe.ingredients} />
+        </div>
       </div>
     </div>
   );
