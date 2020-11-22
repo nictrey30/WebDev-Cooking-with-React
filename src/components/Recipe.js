@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Recipe({ recipe }) {
   return (
-    <div key={recipe.id}>
+    <div>
       <div>
         <h3>{recipe.name}</h3>
         <div>
