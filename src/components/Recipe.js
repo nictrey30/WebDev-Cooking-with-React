@@ -3,29 +3,31 @@ import IngredientList from './IngredientList';
 
 export default function Recipe({ recipe }) {
   return (
-    <div>
-      <div>
-        <h3>{recipe.name}</h3>
+    <div className='recipe'>
+      <div className='recipe__header'>
+        <h3 className='recipe__title'>{recipe.name}</h3>
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button className='btn btn--primary mr-1'>Edit</button>
+          <button className='btn btn--danger'>Delete</button>
         </div>
       </div>
-      <div>
-        <span>Cook Time:</span>
-        <span>{recipe.cookTime}</span>
+      <div className='recipe__row'>
+        <span className='recipe__label'>Cook Time:</span>
+        <span className='recipe__value'>{recipe.cookTime}</span>
       </div>
-      <div>
-        <span>Servings:</span>
-        <span>{recipe.servings}</span>
+      <div className='recipe__row'>
+        <span className='recipe__label'>Servings:</span>
+        <span className='recipe__value'>{recipe.servings}</span>
       </div>
-      <div>
-        <span>Instructions:</span>
-        <div>{recipe.instructions}</div>
+      <div className='recipe__row'>
+        <span className='recipe__label'>Instructions:</span>
+        <div className='recipe__value recipe__instructions recipe__value--indented'>
+          {recipe.instructions}
+        </div>
       </div>
-      <div>
-        <span>Ingredients:</span>
-        <div>
+      <div className='recipe__row'>
+        <span className='recipe__label'>Ingredients:</span>
+        <div className='recipe__value recipe__value--indented'>
           <IngredientList ingredients={recipe.ingredients} />
         </div>
       </div>
