@@ -1,39 +1,13 @@
-import React, { createContext, useState, useReducer } from 'react';
-import { v1 as uuidv1 } from 'uuid';
+import React, { createContext, useReducer } from 'react';
+import recipeReducer from '../reducers/recipeReducer';
 
 export const RecipeContext = createContext();
 
 export default function RecipeContextProvider(props) {
-  const [recipes, setRecipes] = useState(sampleRecipes);
-
-  // add a recipe function
-  function handleRecipeAdd() {
-    const newRecipe = {
-      id: uuidv1(),
-      name: 'New',
-      servings: 1,
-      cookTime: '1:00',
-      instructions: 'Instr.',
-      ingredients: [
-        {
-          id: uuidv1(),
-          name: 'Name',
-          amount: '1 Tbs'
-        }
-      ]
-    };
-    setRecipes([...recipes, newRecipe]);
-  }
-
-  // delete a recipe
-  function handleRecipeDelete(id) {
-    setRecipes(recipes.filter((recipe) => recipe.id !== id));
-  }
+  const [recipes, dispatch] = useReducer(recipeReducer, sampleRecipes);
 
   return (
-    <RecipeContext.Provider
-      value={{ recipes, handleRecipeAdd, handleRecipeDelete }}
-    >
+    <RecipeContext.Provider value={{ recipes, dispatch }}>
       {props.children}
     </RecipeContext.Provider>
   );

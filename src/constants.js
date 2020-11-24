@@ -1,0 +1,6 @@
+const ACTIONS = {
+  ADD_RECIPE: ' ADD_RECIPE',
+  DELETE_RECIPE: 'DELETE_RECIPE'
+};
+
+export default ACTIONS;
