@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RecipeContext } from '../contexts/RecipeContext';
 import IngredientList from './IngredientList';
 
-export default function Recipe({ recipe, handleRecipeDelete }) {
+// recipe in parameters i take it from passing it down as props from RecipeList
+// handleRecipeDelete i take it from the context of RecipeContext
+export default function Recipe({ recipe }) {
+  const { handleRecipeDelete } = useContext(RecipeContext);
   return (
     <div className='recipe'>
       <div className='recipe__header'>
