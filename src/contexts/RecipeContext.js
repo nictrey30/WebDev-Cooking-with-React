@@ -1,10 +1,17 @@
-import React, { createContext, useReducer } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import recipeReducer from '../reducers/recipeReducer';
 
 export const RecipeContext = createContext();
 
 export default function RecipeContextProvider(props) {
-  const [recipes, dispatch] = useReducer(recipeReducer, sampleRecipes);
+  const [recipes, dispatch] = useReducer(recipeReducer, sampleRecipes, () => {
+    const localData = localStorage.getItem('recipes');
+    return localData ? JSON.parse(localData) : sampleRecipes;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('recipes', JSON.stringify(recipes));
+  }, [recipes]);
 
   return (
     <RecipeContext.Provider value={{ recipes, dispatch }}>
