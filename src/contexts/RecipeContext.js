@@ -4,13 +4,18 @@ import recipeReducer from '../reducers/recipeReducer';
 export const RecipeContext = createContext();
 
 export default function RecipeContextProvider(props) {
-  const [recipes, dispatch] = useReducer(recipeReducer, sampleRecipes, () => {
-    const localData = localStorage.getItem('recipes');
+  const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes';
+  const [recipes, dispatch] = useReducer(recipeReducer, [], () => {
+    const localData = localStorage.getItem(LOCAL_STORAGE_KEY);
     return localData ? JSON.parse(localData) : sampleRecipes;
   });
 
   useEffect(() => {
-    localStorage.setItem('recipes', JSON.stringify(recipes));
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
+
+    // cleanup function
+    // the useEffect hook is calling this return every time the "recipes" dependency changes to make sure it cleans everything up before it re-instates what it is inside the useEffect hook
+    return () => console.log('recipes set in localStorage');
   }, [recipes]);
 
   return (
