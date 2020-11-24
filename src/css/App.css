@@ -4,11 +4,13 @@
 @import 'recipe-list.css';
 @import 'ingredient-list.css';
 @import 'recipe.css';
+@import 'recipe-edit';
 
 *,
 *::before,
 *::after {
   font-family: Gotham Rounded, serif;
+  box-sizing: border-box;
 }
 
 html {
