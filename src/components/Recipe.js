@@ -5,13 +5,18 @@ import ACTIONS from '../constants';
 
 // recipe in parameters i take it from passing it down as props from RecipeList
 export default function Recipe({ recipe }) {
-  const { dispatch } = useContext(RecipeContext);
+  const { dispatch, handleRecipeSelect } = useContext(RecipeContext);
   return (
     <div className='recipe'>
       <div className='recipe__header'>
         <h3 className='recipe__title'>{recipe.name}</h3>
         <div>
-          <button className='btn btn--primary mr-1'>Edit</button>
+          <button
+            className='btn btn--primary mr-1'
+            onClick={() => handleRecipeSelect(recipe.id)}
+          >
+            Edit
+          </button>
           <button
             className='btn btn--danger'
             onClick={() =>

@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { RecipeContext } from '../contexts/RecipeContext';
 import RecipeIngredientEdit from './RecipeIngredientEdit';
 
 export default function RecipeEdit() {
-  return (
+  const { selectedRecipe } = useContext(RecipeContext);
+  return selectedRecipe ? (
     <div className='recipe-edit'>
       <div className='recipe-edit__remove-button-container'>
         <button className='recipe-edit__remove-button'>&times;</button>
@@ -16,6 +18,7 @@ export default function RecipeEdit() {
           name='name'
           id='name'
           className='recipe-edit__input'
+          value={selectedRecipe.name}
         />
         <label htmlFor='cookTime' className='recipe-edit__label'>
           Cook Time
@@ -25,6 +28,7 @@ export default function RecipeEdit() {
           name='cookTime'
           id='cookTime'
           className='recipe-edit__input'
+          value={selectedRecipe.cookTime}
         />
         <label htmlFor='servings' className='recipe-edit__label'>
           Servings
@@ -35,6 +39,7 @@ export default function RecipeEdit() {
           name='servings'
           id='servings'
           className='recipe-edit__input'
+          value={selectedRecipe.servings}
         />
         <label htmlFor='instructions' className='recipe-edit__label'>
           Instructions
@@ -43,6 +48,7 @@ export default function RecipeEdit() {
           name='instructions'
           id='instructions'
           className='recipe-edit__input'
+          value={selectedRecipe.instructions}
         ></textarea>
       </div>
       <br />
@@ -52,12 +58,15 @@ export default function RecipeEdit() {
         <div>Amount</div>
         <div></div>
         {/* Ingredient Components */}
-        <RecipeIngredientEdit />
-        <RecipeIngredientEdit />
+        {selectedRecipe.ingredients.map((ingredient) => (
+          <RecipeIngredientEdit ingredient={ingredient} />
+        ))}
+        {/* <RecipeIngredientEdit />
+        <RecipeIngredientEdit /> */}
       </div>
       <div className='recipe-edit__add-ingredient-btn-container'>
         <button className='btn btn--primary'>Add Ingredient</button>
       </div>
     </div>
-  );
+  ) : null;
 }

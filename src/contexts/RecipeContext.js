@@ -1,14 +1,29 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer, useEffect, useState } from 'react';
 import recipeReducer from '../reducers/recipeReducer';
 
 export const RecipeContext = createContext();
 
 export default function RecipeContextProvider(props) {
   const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes';
+
   const [recipes, dispatch] = useReducer(recipeReducer, [], () => {
     const localData = localStorage.getItem(LOCAL_STORAGE_KEY);
     return localData ? JSON.parse(localData) : sampleRecipes;
   });
+
+  // we need to call the setSelectedRecipeId when we press the EDIT button
+  const [selectedRecipeId, setSelectedRecipeId] = useState();
+
+  // the selected recipe based on the specific id we pass to the HandleRecipeSelect function
+  const selectedRecipe = recipes.find(
+    (recipe) => selectedRecipeId === recipe.id
+  );
+
+  // we pass it an ID of which recipe we select
+  function handleRecipeSelect(id) {
+    setSelectedRecipeId(id);
+  }
+  // console.log(selectedRecipeId);
 
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes));
@@ -19,7 +34,9 @@ export default function RecipeContextProvider(props) {
   }, [recipes]);
 
   return (
-    <RecipeContext.Provider value={{ recipes, dispatch }}>
+    <RecipeContext.Provider
+      value={{ recipes, dispatch, handleRecipeSelect, selectedRecipe }}
+    >
       {props.children}
     </RecipeContext.Provider>
   );
