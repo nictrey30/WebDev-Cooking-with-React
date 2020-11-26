@@ -43,6 +43,15 @@ function recipeReducer(state, action) {
         }
         return recipe;
       });
+    case ACTIONS.DELETE_INGREDIENT:
+      return state.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+          recipe.ingredients = recipe.ingredients.filter(
+            (ingredient) => ingredient.id !== action.payload.ingredientId
+          );
+        }
+        return recipe;
+      });
     default:
       return state;
   }

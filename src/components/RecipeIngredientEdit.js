@@ -39,7 +39,20 @@ export default function RecipeIngredientEdit({ ingredient }) {
           });
         }}
       />
-      <button className='btn btn--danger'>&times;</button>
+      <button
+        className='btn btn--danger'
+        onClick={() =>
+          dispatch({
+            type: ACTIONS.DELETE_INGREDIENT,
+            payload: {
+              id: selectedRecipe.id,
+              ingredientId: ingredient.id
+            }
+          })
+        }
+      >
+        &times;
+      </button>
     </>
   );
 }

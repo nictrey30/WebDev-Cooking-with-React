@@ -35,7 +35,12 @@ export default function RecipeContextProvider(props) {
 
   return (
     <RecipeContext.Provider
-      value={{ recipes, dispatch, handleRecipeSelect, selectedRecipe }}
+      value={{
+        recipes,
+        dispatch,
+        handleRecipeSelect,
+        selectedRecipe
+      }}
     >
       {props.children}
     </RecipeContext.Provider>
