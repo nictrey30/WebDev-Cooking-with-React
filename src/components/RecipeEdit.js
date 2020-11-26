@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import ACTIONS from '../constants';
 import { RecipeContext } from '../contexts/RecipeContext';
 import RecipeIngredientEdit from './RecipeIngredientEdit';
+import { v1 as uuidv1 } from 'uuid';
 
 export default function RecipeEdit() {
   const { selectedRecipe, dispatch } = useContext(RecipeContext);
@@ -99,12 +100,32 @@ export default function RecipeEdit() {
         <div>Amount</div>
         <div></div>
         {/* Ingredient Components */}
-        {selectedRecipe.ingredients.map((ingredient) => (
-          <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
-        ))}
+        {selectedRecipe.ingredients.length !== 0
+          ? selectedRecipe.ingredients.map((ingredient) => (
+              <RecipeIngredientEdit
+                key={ingredient.id}
+                ingredient={ingredient}
+              />
+            ))
+          : null}
       </div>
       <div className='recipe-edit__add-ingredient-btn-container'>
-        <button className='btn btn--primary'>Add Ingredient</button>
+        <button
+          className='btn btn--primary'
+          onClick={() => {
+            dispatch({
+              type: ACTIONS.ADD_INGREDIENT,
+              payload: {
+                id: selectedRecipe.id,
+                ingredientId: uuidv1(),
+                name: '',
+                amount: ''
+              }
+            });
+          }}
+        >
+          Add Ingredient
+        </button>
       </div>
     </div>
   ) : null;

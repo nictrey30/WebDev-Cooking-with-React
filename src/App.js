@@ -1,4 +1,5 @@
 import React from 'react';
+import IngredientForm from './components/IngredientForm';
 import RecipeEdit from './components/RecipeEdit';
 import RecipeList from './components/RecipeList';
 import RecipeContextProvider from './contexts/RecipeContext';
@@ -9,6 +10,7 @@ function App() {
     <RecipeContextProvider>
       <RecipeList />
       <RecipeEdit />
+      <IngredientForm />
     </RecipeContextProvider>
   );
 }

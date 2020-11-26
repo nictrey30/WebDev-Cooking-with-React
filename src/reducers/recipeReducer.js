@@ -52,6 +52,23 @@ function recipeReducer(state, action) {
         }
         return recipe;
       });
+    case ACTIONS.ADD_INGREDIENT:
+      return state.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+          return {
+            ...recipe,
+            ingredients: [
+              ...recipe.ingredients,
+              {
+                id: action.payload.ingredientId,
+                name: action.payload.name,
+                amount: action.payload.amount
+              }
+            ]
+          };
+        }
+        return recipe;
+      });
     default:
       return state;
   }

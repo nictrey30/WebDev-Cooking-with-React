@@ -44,7 +44,9 @@ export default function Recipe({ recipe }) {
       <div className='recipe__row'>
         <span className='recipe__label'>Ingredients:</span>
         <div className='recipe__value recipe__value--indented'>
-          <IngredientList ingredients={recipe.ingredients} />
+          {recipe.ingredients ? (
+            <IngredientList ingredients={recipe.ingredients} />
+          ) : null}
         </div>
       </div>
     </div>
