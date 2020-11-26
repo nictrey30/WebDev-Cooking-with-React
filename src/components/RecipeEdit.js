@@ -59,10 +59,8 @@ export default function RecipeEdit() {
         <div></div>
         {/* Ingredient Components */}
         {selectedRecipe.ingredients.map((ingredient) => (
-          <RecipeIngredientEdit ingredient={ingredient} />
+          <RecipeIngredientEdit key={ingredient.id} ingredient={ingredient} />
         ))}
-        {/* <RecipeIngredientEdit />
-        <RecipeIngredientEdit /> */}
       </div>
       <div className='recipe-edit__add-ingredient-btn-container'>
         <button className='btn btn--primary'>Add Ingredient</button>
