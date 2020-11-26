@@ -17,7 +17,8 @@ export default function RecipeIngredientEdit({ ingredient }) {
             payload: {
               id: selectedRecipe.id,
               ingredientId: ingredient.id,
-              name: e.target.value
+              name: e.target.value,
+              amount: ingredient.amount
             }
           });
         }}
@@ -32,6 +33,7 @@ export default function RecipeIngredientEdit({ ingredient }) {
             payload: {
               id: selectedRecipe.id,
               ingredientId: ingredient.id,
+              name: ingredient.name,
               amount: e.target.value
             }
           });

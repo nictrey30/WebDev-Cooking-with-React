@@ -33,12 +33,8 @@ function recipeReducer(state, action) {
         if (recipe.id === action.payload.id) {
           recipe.ingredients = recipe.ingredients.map((ingredient) => {
             if (ingredient.id === action.payload.ingredientId) {
-              ingredient.name = action.payload.name
-                ? action.payload.name
-                : ingredient.name;
-              ingredient.amount = action.payload.amount
-                ? action.payload.amount
-                : ingredient.amount;
+              ingredient.name = action.payload.name;
+              ingredient.amount = action.payload.amount;
               return ingredient;
             }
             return ingredient;
