@@ -30,7 +30,7 @@ export default function RecipeContextProvider(props) {
 
     // cleanup function
     // the useEffect hook is calling this return every time the "recipes" dependency changes to make sure it cleans everything up before it re-instates what it is inside the useEffect hook
-    return () => console.log('recipes set in localStorage');
+    // return () => console.log('recipes set in localStorage');
   }, [recipes]);
 
   return (

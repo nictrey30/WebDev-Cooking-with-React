@@ -21,6 +21,32 @@ function recipeReducer(state, action) {
       return [...state, newRecipe];
     case ACTIONS.DELETE_RECIPE:
       return state.filter((recipe) => recipe.id !== action.payload);
+    case ACTIONS.UPDATE_RECIPES:
+      return state.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+          return action.payload.recipe;
+        }
+        return recipe;
+      });
+    case ACTIONS.UPDATE_INGREDIENT:
+      return state.map((recipe) => {
+        if (recipe.id === action.payload.id) {
+          recipe.ingredients = recipe.ingredients.map((ingredient) => {
+            if (ingredient.id === action.payload.ingredientId) {
+              ingredient.name = action.payload.name
+                ? action.payload.name
+                : ingredient.name;
+              ingredient.amount = action.payload.amount
+                ? action.payload.amount
+                : ingredient.amount;
+              return ingredient;
+            }
+            return ingredient;
+          });
+          return recipe;
+        }
+        return recipe;
+      });
     default:
       return state;
   }

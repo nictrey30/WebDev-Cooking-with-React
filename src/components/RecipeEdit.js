@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import ACTIONS from '../constants';
 import { RecipeContext } from '../contexts/RecipeContext';
 import RecipeIngredientEdit from './RecipeIngredientEdit';
 
 export default function RecipeEdit() {
-  const { selectedRecipe } = useContext(RecipeContext);
+  const { selectedRecipe, dispatch } = useContext(RecipeContext);
+
   return selectedRecipe ? (
     <div className='recipe-edit'>
       <div className='recipe-edit__remove-button-container'>
@@ -19,6 +21,15 @@ export default function RecipeEdit() {
           id='name'
           className='recipe-edit__input'
           value={selectedRecipe.name}
+          onChange={(e) => {
+            dispatch({
+              type: ACTIONS.UPDATE_RECIPES,
+              payload: {
+                id: selectedRecipe.id,
+                recipe: { ...selectedRecipe, name: e.target.value }
+              }
+            });
+          }}
         />
         <label htmlFor='cookTime' className='recipe-edit__label'>
           Cook Time
@@ -29,6 +40,15 @@ export default function RecipeEdit() {
           id='cookTime'
           className='recipe-edit__input'
           value={selectedRecipe.cookTime}
+          onChange={(e) => {
+            dispatch({
+              type: ACTIONS.UPDATE_RECIPES,
+              payload: {
+                id: selectedRecipe.id,
+                recipe: { ...selectedRecipe, cookTime: e.target.value }
+              }
+            });
+          }}
         />
         <label htmlFor='servings' className='recipe-edit__label'>
           Servings
@@ -40,6 +60,18 @@ export default function RecipeEdit() {
           id='servings'
           className='recipe-edit__input'
           value={selectedRecipe.servings}
+          onChange={(e) => {
+            dispatch({
+              type: ACTIONS.UPDATE_RECIPES,
+              payload: {
+                id: selectedRecipe.id,
+                recipe: {
+                  ...selectedRecipe,
+                  servings: parseInt(e.target.value) || ''
+                }
+              }
+            });
+          }}
         />
         <label htmlFor='instructions' className='recipe-edit__label'>
           Instructions
@@ -49,6 +81,15 @@ export default function RecipeEdit() {
           id='instructions'
           className='recipe-edit__input'
           value={selectedRecipe.instructions}
+          onChange={(e) => {
+            dispatch({
+              type: ACTIONS.UPDATE_RECIPES,
+              payload: {
+                id: selectedRecipe.id,
+                recipe: { ...selectedRecipe, instructions: e.target.value }
+              }
+            });
+          }}
         ></textarea>
       </div>
       <br />
