@@ -5,7 +5,7 @@ function recipeReducer(state, action) {
   switch (action.type) {
     case ACTIONS.ADD_RECIPE:
       const newRecipe = {
-        id: uuidv1(),
+        id: action.payload,
         name: 'New',
         servings: 1,
         cookTime: '1:00',
