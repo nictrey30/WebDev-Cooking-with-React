@@ -5,12 +5,19 @@ import RecipeIngredientEdit from './RecipeIngredientEdit';
 import { v1 as uuidv1 } from 'uuid';
 
 export default function RecipeEdit() {
-  const { selectedRecipe, dispatch } = useContext(RecipeContext);
+  const { selectedRecipe, handleRecipeSelect, dispatch } = useContext(
+    RecipeContext
+  );
 
   return selectedRecipe ? (
     <div className='recipe-edit'>
       <div className='recipe-edit__remove-button-container'>
-        <button className='recipe-edit__remove-button'>&times;</button>
+        <button
+          className='recipe-edit__remove-button'
+          onClick={() => handleRecipeSelect(undefined)}
+        >
+          &times;
+        </button>
       </div>
       <div className='recipe-edit__details-grid'>
         <label htmlFor='name' className='recipe-edit__label'>

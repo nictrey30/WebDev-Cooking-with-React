@@ -19,8 +19,12 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
+.recipe-edit__remove-button:hover {
+  transform: rotate(90deg);
+}
 .recipe-edit__details-grid {
   display: grid;
   grid-template-columns: auto 1fr;
